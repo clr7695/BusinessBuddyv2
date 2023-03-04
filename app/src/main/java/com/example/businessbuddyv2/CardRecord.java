@@ -16,6 +16,7 @@ public class CardRecord {
 
     public void addCard(BusinessCard card){
         cards.add(card);
+        updateFile();
     }
 
     public void updateList(){
@@ -47,9 +48,17 @@ public class CardRecord {
                     skills[n] = iterator_s.next();
                     n += 1;
                 }
-                //TODO implement way to get education info from JSON
                 HashMap<String, String> education = new HashMap<String, String>();
-
+                JSONObject educationJSON = (JSONObject) card.get("education");
+                try {
+                    education.put("highSchool", (String) educationJSON.get("highSchool"));
+                    education.put("associates", (String) educationJSON.get("associates"));
+                    education.put("bachelors", (String) educationJSON.get("bachelors"));
+                    education.put("masters", (String) educationJSON.get("masters"));
+                    education.put("doctorate", (String) educationJSON.get("doctorate"));
+                }catch(Exception e) {
+                    e.printStackTrace();
+                }
                 BusinessCard cardDone = new BusinessCard(firstName, lastName, pronouns, email, company,
                     education, skills, bio, myCard);
                 cards.add(cardDone);
@@ -79,6 +88,11 @@ public class CardRecord {
                     skills.add(cards.get(i).skills[j]);
                 }
                 cardJSON.put("skills", skills);
+
+                org.json.JSONObject educationJSON = new org.json.JSONObject(cards.get(i).education);
+                cardJSON.put("education", educationJSON);
+
+
             }
         }catch(Exception e) {
             e.printStackTrace();
