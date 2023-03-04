@@ -1,20 +1,46 @@
 package com.example.businessbuddyv2;
-import com.example.businessbuddyv2.Pronoun;
+
+import java.util.Arrays;
+
 public class BusinessCard {
     String lastName;
     String firstName;
-    Pronoun pronouns;
+    String[] pronouns = new String[4];
     String email;
     String company;
-    String[] skills;
+    String[] skills = new String[5];
 
     public BusinessCard(String firstName, String lastName, String email, String company,
-                        Pronoun pronouns, String[] skills){
+                        String[] pronouns, String[] skills){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.company = company;
         this.pronouns = pronouns;
         this.skills = skills;
+    }
+
+    public String getFirstName(){
+        return this.firstName;
+    }
+
+    public String getLastName(){
+        return this.lastName;
+    }
+
+    public String getEmail(){
+        return this.email;
+    }
+
+    public String getCompany(){
+        return this.company;
+    }
+
+    public String getPronouns(){
+        return Arrays.toString(this.pronouns);
+    }
+
+    public String getSkills(){
+        return Arrays.toString(this.skills);
     }
 }
