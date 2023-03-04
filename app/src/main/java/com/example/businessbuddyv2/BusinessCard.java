@@ -31,6 +31,14 @@ public class BusinessCard {
         this.myCard = myCard;
     }
 
+    public BusinessCard(String firstName, String lastName, String[] pronouns, String email, String company) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.company = company;
+        this.pronouns = pronouns;
+    }
+
     public String getFirstName(){
         return this.firstName;
     }
