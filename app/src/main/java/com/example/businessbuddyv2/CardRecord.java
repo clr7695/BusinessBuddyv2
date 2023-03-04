@@ -52,10 +52,37 @@ public class CardRecord {
 
                 BusinessCard cardDone = new BusinessCard(firstName, lastName, pronouns, email, company,
                     education, skills, bio, myCard);
-                cardList.add(cardDone);
+                cards.add(cardDone);
             }
         } catch(Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void updateFile(){
+        try {
+            for (int i = 0; i < cards.size(); i++) {
+                org.json.JSONObject cardJSON = new org.json.JSONObject();
+                cardJSON.put("firstName", cards.get(i).firstName);
+                cardJSON.put("lastName", cards.get(i).lastName);
+                cardJSON.put("email", cards.get(i).email);
+                cardJSON.put("company", cards.get(i).company);
+                cardJSON.put("bio", cards.get(i).bio);
+                cardJSON.put("myCard", cards.get(i).myCard);
+                JSONArray pronouns = new JSONArray();
+                for(int j = 0; j < cards.get(i).pronouns.length; j++){
+                    pronouns.add(cards.get(i).pronouns[j]);
+                }
+                cardJSON.put("pronouns", pronouns);
+                JSONArray skills = new JSONArray();
+                for(int j = 0; j < cards.get(i).skills.length; j++){
+                    skills.add(cards.get(i).skills[j]);
+                }
+                cardJSON.put("skills", skills);
+            }
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

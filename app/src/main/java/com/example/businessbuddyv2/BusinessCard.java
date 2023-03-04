@@ -30,6 +30,7 @@ public class BusinessCard {
         this.education = education;
         this.bio = bio;
         this.myCard = myCard;
+
     }
 
     public BusinessCard(String firstName, String lastName, String[] pronouns, String email, String company, boolean myCard) {
