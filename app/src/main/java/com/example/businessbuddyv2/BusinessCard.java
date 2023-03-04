@@ -31,12 +31,16 @@ public class BusinessCard {
         this.myCard = myCard;
     }
 
-    public BusinessCard(String firstName, String lastName, String[] pronouns, String email, String company) {
+    public BusinessCard(String firstName, String lastName, String[] pronouns, String email, String company, boolean myCard) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.company = company;
         this.pronouns = pronouns;
+        this.skills = new String[5];
+        this.education = new HashMap<String, String>();
+        this.bio = "";
+        this.myCard = myCard;
     }
 
     public String getFirstName(){
