@@ -1,0 +1,7 @@
+-name
+-pronouns
+-email
+-company
+-skills
+-education (level, school)
+-individual/company
