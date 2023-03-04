@@ -16,8 +16,10 @@ public class BusinessCard {
 
     String bio;
 
+    Boolean myCard;
+
     public BusinessCard(String firstName, String lastName, String[] pronouns, String email, String company,
-                        HashMap<String, String> education, String[] skills, String bio){
+                        HashMap<String, String> education, String[] skills, String bio, Boolean myCard){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -26,6 +28,7 @@ public class BusinessCard {
         this.skills = skills;
         this.education = education;
         this.bio = bio;
+        this.myCard = myCard;
     }
 
     public String getFirstName(){
@@ -50,5 +53,25 @@ public class BusinessCard {
 
     public String getSkills(){
         return Arrays.toString(this.skills);
+    }
+
+    public String getBio(){
+        return bio;
+    }
+
+    public HashMap<String, String> getEducation(){
+        return education;
+    }
+
+    public Boolean getMyCard(){
+        return myCard;
+    }
+
+    public void isMyCard(){
+        myCard = true;
+    }
+
+    public void isNotMyCard(){
+        myCard = false;
     }
 }
