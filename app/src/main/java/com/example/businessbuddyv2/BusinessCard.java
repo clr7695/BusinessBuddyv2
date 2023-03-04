@@ -3,12 +3,10 @@ package com.example.businessbuddyv2;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 
 public class BusinessCard {
-    JSONObject card = new JSONObject();
     String lastName;
     String firstName;
     String[] pronouns = new String[4];
@@ -24,16 +22,6 @@ public class BusinessCard {
         this.company = company;
         this.pronouns = pronouns;
         this.skills = skills;
-        card.put("firstName", firstName);
-        card.put("lastName", lastName);
-        card.put("pronouns", pronouns);
-        card.put("email", email);
-        card.put("company", company);
-        card.put("skills", skills);
-
-        FileWriter file = new FileWriter("cards.json");
-        file.write(card.toString());
-        file.close();
     }
 
     public String getFirstName(){
