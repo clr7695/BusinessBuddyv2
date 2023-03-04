@@ -2,11 +2,14 @@ package com.example.businessbuddyv2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MakeCard extends AppCompatActivity {
 
@@ -50,5 +53,39 @@ public class MakeCard extends AppCompatActivity {
         c_cb_other_pronoun = findViewById(R.id.cb_other_pronoun);
         c_btn_cancel_make_card = findViewById(R.id.btn_cancel_make_card);
         c_btn_next_make_card = findViewById(R.id.btn_next_make_card);
+
+        c_btn_next_make_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String input_first_name = c_et_first_name.getText().toString();
+                String input_last_name = c_et_last_name.getText().toString();
+                String input_email = c_et_email.getText().toString();
+                String input_company = c_et_company.getText().toString();
+                String[] input_pronouns = new String[4];
+
+                //get pronouns and add them to pronouns array
+                int current_index = 0;
+                if(c_cb_he_him.isChecked()) {
+                    input_pronouns[current_index] = "He/Him";
+                    current_index++;
+                }
+                if(c_cb_she_her.isChecked()) {
+                    input_pronouns[current_index] = "She/Her";
+                    current_index++;
+                }
+                if(c_cb_they_them.isChecked()) {
+                    input_pronouns[current_index] = "They/Them";
+                    current_index++;
+                }
+                if(c_cb_other_pronoun.isChecked()) {
+                    input_pronouns[current_index] = c_et_other_pronoun.getText().toString();
+                    current_index++;
+                }
+
+                BusinessCard newCard = new BusinessCard(input_first_name, input_last_name, input_pronouns, input_email, input_company, true);
+
+
+            }
+        });
     }
 }
