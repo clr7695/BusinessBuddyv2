@@ -99,4 +99,14 @@ public class CardRecord {
         }
 
     }
+
+    public ArrayList<BusinessCard> getMyCard(){
+        ArrayList<BusinessCard> myCards = new ArrayList<BusinessCard>();
+        for(int i = 0; i < cards.size(); i++){
+            if(cards.get(i).myCard){
+                myCards.add(cards.get(i));
+            }
+        }
+        return myCards;
+    }
 }
