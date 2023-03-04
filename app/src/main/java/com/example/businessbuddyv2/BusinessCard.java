@@ -6,10 +6,10 @@ import java.util.HashMap;
 public class BusinessCard {
     String lastName;
     String firstName;
-    String[] pronouns = new String[4];
+    String[] pronouns;
     String email;
     String company;
-    String[] skills = new String[5];
+    String[] skills;
 
     //Education formatted in <"level", "location">
     HashMap<String, String> education = new HashMap<String, String>();
