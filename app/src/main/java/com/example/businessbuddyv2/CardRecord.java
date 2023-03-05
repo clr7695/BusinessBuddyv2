@@ -100,7 +100,7 @@ public class CardRecord {
 
     }
 
-    public ArrayList<BusinessCard> getMyCard(){
+    public ArrayList<BusinessCard> getMyCards(){
         ArrayList<BusinessCard> myCards = new ArrayList<BusinessCard>();
         for(int i = 0; i < cards.size(); i++){
             if(cards.get(i).myCard){

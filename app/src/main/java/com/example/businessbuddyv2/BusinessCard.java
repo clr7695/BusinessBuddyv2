@@ -1,6 +1,5 @@
 package com.example.businessbuddyv2;
 
-
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -19,6 +18,8 @@ public class BusinessCard {
 
     Boolean myCard;
 
+    CardRecord cardRecord;
+
     public BusinessCard(String firstName, String lastName, String[] pronouns, String email, String company,
                         HashMap<String, String> education, String[] skills, String bio, Boolean myCard){
         this.firstName = firstName;
@@ -31,6 +32,8 @@ public class BusinessCard {
         this.bio = bio;
         this.myCard = myCard;
 
+        this.cardRecord = new CardRecord();
+        this.cardRecord.addCard(this);
     }
 
     public BusinessCard(String firstName, String lastName, String[] pronouns, String email, String company, boolean myCard) {
