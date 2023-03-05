@@ -52,5 +52,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        c_btn_show_my_cards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ShowCardsByCatieActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
