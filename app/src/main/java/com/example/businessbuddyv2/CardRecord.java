@@ -171,7 +171,7 @@ public class CardRecord {
         return card;
     }
 
-    public void makeQRcode(BusinessCard card){
+    /*public void makeQRcode(BusinessCard card){
         try {
             QRcodeGen.make(makeJSON(card).toJSONString(), this.cardFile);
         } catch (WriterException e) {
@@ -181,5 +181,5 @@ public class CardRecord {
         } catch (NotFoundException e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
 }
