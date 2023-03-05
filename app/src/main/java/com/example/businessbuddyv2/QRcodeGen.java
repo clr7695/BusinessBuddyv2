@@ -33,12 +33,12 @@ public class QRcodeGen {
     }
 
     // Driver code
-    public static void make(String data)
+    public static void make(String data, String filepath)
             throws WriterException, IOException,
             NotFoundException
     {
         // The path where the image will get saved
-        String path = "myCardQR.png";
+        String path = filepath + "/myCardQR.png";
 
         // Encoding charset
         String charset = "UTF-8";

@@ -1,6 +1,9 @@
 package com.example.businessbuddyv2;
 import android.content.Context;
 
+import com.google.zxing.NotFoundException;
+import com.google.zxing.WriterException;
+
 import org.json.simple.*;
 import org.json.simple.parser.*;
 
@@ -99,30 +102,8 @@ public class CardRecord {
         try {
             FileWriter cardWriter = new FileWriter(this.cardFile + "/cards.json");
             for (int i = 0; i < cards.size(); i++) {
-
-                org.json.JSONObject cardJSON = new org.json.JSONObject();
-                cardJSON.put("firstName", cards.get(i).firstName);
-                cardJSON.put("lastName", cards.get(i).lastName);
-                cardJSON.put("email", cards.get(i).email);
-                cardJSON.put("company", cards.get(i).company);
-                cardJSON.put("bio", cards.get(i).bio);
-                cardJSON.put("myCard", cards.get(i).myCard);
-                JSONArray pronouns = new JSONArray();
-                for(int j = 0; j < cards.get(i).pronouns.length; j++){
-                    pronouns.add(cards.get(i).pronouns[j]);
-                }
-                cardJSON.put("pronouns", pronouns);
-                JSONArray skills = new JSONArray();
-                for(int j = 0; j < cards.get(i).skills.length; j++){
-                    skills.add(cards.get(i).skills[j]);
-                }
-                cardJSON.put("skills", skills);
-
-                org.json.JSONObject educationJSON = new org.json.JSONObject(cards.get(i).education);
-                cardJSON.put("education", educationJSON);
-
+                JSONObject cardJSON = makeJSON(cards.get(i));
                 cardArray.add(cardJSON);
-
             }
             cardWriter.write(cardArray.toJSONString());
             cardWriter.close();
@@ -130,6 +111,34 @@ public class CardRecord {
             e.printStackTrace();
         }
 
+    }
+
+    private JSONObject makeJSON(BusinessCard card){
+        JSONObject cardJSON = new JSONObject();
+        try {
+            cardJSON.put("firstName", card.firstName);
+            cardJSON.put("lastName", card.lastName);
+            cardJSON.put("email", card.email);
+            cardJSON.put("company", card.company);
+            cardJSON.put("bio", card.bio);
+            cardJSON.put("myCard", card.myCard);
+            JSONArray pronouns = new JSONArray();
+            for (int j = 0; j < card.pronouns.length; j++) {
+                pronouns.add(card.pronouns[j]);
+            }
+            cardJSON.put("pronouns", pronouns);
+            JSONArray skills = new JSONArray();
+            for (int j = 0; j < card.skills.length; j++) {
+                skills.add(card.skills[j]);
+            }
+            cardJSON.put("skills", skills);
+
+            JSONObject educationJSON = new JSONObject(card.education);
+            cardJSON.put("education", educationJSON);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return cardJSON;
     }
 
     public ArrayList<BusinessCard> getMyCards(){
@@ -160,5 +169,17 @@ public class CardRecord {
         BusinessCard card = new BusinessCard(tempCard.firstName, tempCard.lastName, tempCard.pronouns, tempCard.email, tempCard.company, education, skills, bio, tempCard.myCard);
         addCard(card);
         return card;
+    }
+
+    public void makeQRcode(BusinessCard card){
+        try {
+            QRcodeGen.make(makeJSON(card).toJSONString(), this.cardFile);
+        } catch (WriterException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (NotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
