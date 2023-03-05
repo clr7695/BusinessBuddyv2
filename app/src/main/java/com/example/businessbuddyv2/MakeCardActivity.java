@@ -2,6 +2,7 @@ package com.example.businessbuddyv2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -83,6 +84,14 @@ public class MakeCardActivity extends AppCompatActivity {
                 BusinessCard newCard = new BusinessCard(input_first_name, input_last_name, input_pronouns, input_email, input_company, true);
 
 
+            }
+        });
+
+        c_btn_cancel_make_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MakeCardActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
