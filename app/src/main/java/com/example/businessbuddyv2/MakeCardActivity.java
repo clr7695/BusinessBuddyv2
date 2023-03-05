@@ -2,16 +2,14 @@ package com.example.businessbuddyv2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class MakeCard extends AppCompatActivity {
+public class MakeCardActivity extends AppCompatActivity {
 
     private TextView c_tv_make_card;
     private TextView c_tv_first_name;
