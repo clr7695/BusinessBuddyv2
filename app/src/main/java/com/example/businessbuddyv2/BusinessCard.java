@@ -46,6 +46,9 @@ public class BusinessCard {
         this.education = new HashMap<String, String>();
         this.bio = "";
         this.myCard = myCard;
+
+        this.cardRecord = new CardRecord();
+        this.cardRecord.addCard(this);
     }
 
     public String getFirstName(){
