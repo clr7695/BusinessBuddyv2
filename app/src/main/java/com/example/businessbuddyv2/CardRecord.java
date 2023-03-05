@@ -47,49 +47,8 @@ public class CardRecord {
             File f = new File(this.cardFile, "cards.json");
             JSONArray cardList = (JSONArray) parser.parse(new FileReader(f));
             for(Object o : cardList){
-
                 JSONObject card = (JSONObject)o;
-                String firstName = (String) card.get("firstName");
-                String lastName = (String) card.get("lastName");
-                String email = (String) card.get("email");
-                String company = (String) card.get("company");
-                String bio = (String) card.get("bio");
-                Boolean myCard = (Boolean) card.get("myCard");
-                String pronounsArray = (String) card.get("pronouns");
-                JSONArray pronounsJSON = new JSONArray();
-                Object obj = parser.parse(pronounsArray);
-                pronounsJSON = (JSONArray) obj;
-                Iterator<String> iterator_p = pronounsJSON.iterator();
-                String[] pronouns = new String[4];
-                int n = 0;
-                while (iterator_p.hasNext()) {
-                    pronouns[n] = iterator_p.next();
-                    n += 1;
-                }
-                String skillsArray = (String) card.get("skills");
-                JSONArray skillsJSON = new JSONArray();
-                Object obj1 = parser.parse(skillsArray);
-                skillsJSON = (JSONArray) obj1;
-                Iterator<String> iterator_s = skillsJSON.iterator();
-                String[] skills = new String[5];
-                n = 0;
-                while (iterator_s.hasNext()) {
-                    skills[n] = iterator_s.next();
-                    n += 1;
-                }
-                HashMap<String, String> education = new HashMap<String, String>();
-                JSONObject educationJSON = (JSONObject) card.get("education");
-                try {
-                    education.put("highSchool", (String) educationJSON.get("highSchool"));
-                    education.put("associates", (String) educationJSON.get("associates"));
-                    education.put("bachelors", (String) educationJSON.get("bachelors"));
-                    education.put("masters", (String) educationJSON.get("masters"));
-                    education.put("doctorate", (String) educationJSON.get("doctorate"));
-                }catch(Exception e) {
-                    e.printStackTrace();
-                }
-                BusinessCard cardDone = new BusinessCard(firstName, lastName, pronouns, email, company,
-                    education, skills, bio, myCard);
+                BusinessCard cardDone = readCard(card);
                 cards.add(cardDone);
             }
         } catch(Exception e) {
@@ -169,6 +128,66 @@ public class CardRecord {
         BusinessCard card = new BusinessCard(tempCard.firstName, tempCard.lastName, tempCard.pronouns, tempCard.email, tempCard.company, education, skills, bio, tempCard.myCard);
         addCard(card);
         return card;
+    }
+
+    private BusinessCard readCard(JSONObject card){
+        BusinessCard cardDone = null;
+        try {
+            JSONParser parser = new JSONParser();
+            String firstName = (String) card.get("firstName");
+            String lastName = (String) card.get("lastName");
+            String email = (String) card.get("email");
+            String company = (String) card.get("company");
+            String bio = (String) card.get("bio");
+            Boolean myCard = (Boolean) card.get("myCard");
+            String pronounsArray = (String) card.get("pronouns");
+            JSONArray pronounsJSON = new JSONArray();
+            Object obj = parser.parse(pronounsArray);
+            pronounsJSON = (JSONArray) obj;
+            Iterator<String> iterator_p = pronounsJSON.iterator();
+            String[] pronouns = new String[4];
+            int n = 0;
+            while (iterator_p.hasNext()) {
+                pronouns[n] = iterator_p.next();
+                n += 1;
+            }
+            String skillsArray = (String) card.get("skills");
+            JSONArray skillsJSON = new JSONArray();
+            Object obj1 = parser.parse(skillsArray);
+            skillsJSON = (JSONArray) obj1;
+            Iterator<String> iterator_s = skillsJSON.iterator();
+            String[] skills = new String[5];
+            n = 0;
+            while (iterator_s.hasNext()) {
+                skills[n] = iterator_s.next();
+                n += 1;
+            }
+            HashMap<String, String> education = new HashMap<String, String>();
+            JSONObject educationJSON = (JSONObject) card.get("education");
+            try {
+                education.put("highSchool", (String) educationJSON.get("highSchool"));
+                education.put("associates", (String) educationJSON.get("associates"));
+                education.put("bachelors", (String) educationJSON.get("bachelors"));
+                education.put("masters", (String) educationJSON.get("masters"));
+                education.put("doctorate", (String) educationJSON.get("doctorate"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            cardDone = new BusinessCard(firstName, lastName, pronouns, email, company,
+                    education, skills, bio, myCard);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return cardDone;
+    }
+    public void scanQR(String cardJSON){
+        try {
+            JSONParser parser = new JSONParser();
+            JSONObject card = (JSONObject) parser.parse(cardJSON);
+            addCard(readCard(card));
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /*public void makeQRcode(BusinessCard card){

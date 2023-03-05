@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import com.google.common.util.concurrent.ListenableFuture;
 
+import java.io.File;
 import java.util.concurrent.ExecutionException;
 
 public class CameraActivity extends AppCompatActivity {
@@ -32,11 +34,17 @@ public class CameraActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_CAMERA = 0;
     private Button qrCodeFoundButton;
     private String qrCode;
+    private CardRecord record;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
+        Context context = getApplicationContext();
+        File cardFile = context.getDir("cards", MODE_PRIVATE);
+
+        this.record = new CardRecord(cardFile.getAbsolutePath());
 
         previewView = findViewById(R.id.activity_main_previewView);
 
@@ -111,7 +119,11 @@ public class CameraActivity extends AppCompatActivity {
             @Override
             public void onQRCodeFound(String _qrCode) {
                 qrCode = _qrCode;
+                record.scanQR(qrCode);
+                qrCode = "Scanned!";
                 qrCodeFoundButton.setVisibility(View.VISIBLE);
+
+
             }
 
             @Override
