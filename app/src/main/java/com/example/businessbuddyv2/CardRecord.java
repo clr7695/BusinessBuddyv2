@@ -16,6 +16,8 @@ public class CardRecord {
     ArrayList<BusinessCard> cards;
     String cardFile;
 
+    BusinessCard tempCard;
+
     public CardRecord(String filepath){
         File f = new File(filepath);
 
@@ -143,13 +145,19 @@ public class CardRecord {
     public BusinessCard newCardPartial(String firstName, String lastName, String[] pronouns, String email,
                                       String company, boolean myCard){
         BusinessCard card = new BusinessCard(firstName, lastName, pronouns, email, company, myCard);
-        addCard(card);
+        this.tempCard = card;
         return card;
     }
 
     public BusinessCard newCard(String firstName, String lastName, String[] pronouns, String email,
                                       String company, HashMap<String, String> education, String[] skills, String bio, boolean myCard){
         BusinessCard card = new BusinessCard(firstName, lastName, pronouns, email, company, education, skills, bio, myCard);
+        addCard(card);
+        return card;
+    }
+
+    public BusinessCard finishCard(HashMap<String, String> education, String[] skills, String bio){
+        BusinessCard card = new BusinessCard(tempCard.firstName, tempCard.lastName, tempCard.pronouns, tempCard.email, tempCard.company, education, skills, bio, tempCard.myCard);
         addCard(card);
         return card;
     }

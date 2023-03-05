@@ -35,6 +35,17 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation files('src\\main\\java\\json-simple-1.1.1.jar\\json-simple-1.1.1.jar')
     implementation files('src\\main\\java\\json-simple-1.1.1.jar\\json-simple-1.1.1.jar')
+    implementation files('src\\main\\java\\jar_files\\banner-1.0.2.jar')
+    implementation files('src\\main\\java\\jar_files\\commons-collections4-4.1.jar')
+    implementation files('src\\main\\java\\jar_files\\commons-io-2.5.jar')
+    implementation files('src\\main\\java\\jar_files\\commons-lang3-3.6.jar')
+    implementation files('src\\main\\java\\jar_files\\core-3.4.0.jar')
+    implementation files('src\\main\\java\\jar_files\\jai-imageio-core-1.4.0.jar')
+    implementation files('src\\main\\java\\jar_files\\javase-3.4.0.jar')
+    implementation files('src\\main\\java\\jar_files\\jcommander-1.72.jar')
+    implementation files('src\\main\\java\\jar_files\\slf4j-api-1.7.5.jar')
+    implementation files('src\\main\\java\\jar_files\\text-ui-0.0.2.jar')
+    implementation files('src\\main\\java\\jar_files\\zxing-1.1.1.jar')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
