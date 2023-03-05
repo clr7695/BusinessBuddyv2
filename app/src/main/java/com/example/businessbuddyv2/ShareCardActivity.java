@@ -57,7 +57,7 @@ public class ShareCardActivity extends AppCompatActivity {
                 if (cardJSON != null) {
                     qr_code = cardJSON;
                 } else {
-                    qr_code = "Hello!";
+                    qr_code = null;
                 }
                     // below line is for getting
                     // the windowmanager service.

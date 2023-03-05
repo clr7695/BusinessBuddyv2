@@ -116,7 +116,6 @@ public class CardRecord {
                                        String company, boolean myCard) {
         BusinessCard card = new BusinessCard(firstName, lastName, pronouns, email, company, myCard);
         this.tempCard = card;
-        addCard(card);
         return card;
     }
 
@@ -143,22 +142,16 @@ public class CardRecord {
             String company = (String) card.get("company");
             String bio = (String) card.get("bio");
             Boolean myCard = (Boolean) card.get("myCard");
-            String pronounsArray = (String) card.get("pronouns");
-            JSONArray pronounsJSON = new JSONArray();
-            Object obj = parser.parse(pronounsArray);
-            pronounsJSON = (JSONArray) obj;
-            Iterator<String> iterator_p = pronounsJSON.iterator();
+            JSONArray pronounsArray = (JSONArray) card.get("pronouns");
+            Iterator<String> iterator_p = pronounsArray.iterator();
             String[] pronouns = new String[4];
             int n = 0;
             while (iterator_p.hasNext()) {
                 pronouns[n] = iterator_p.next();
                 n += 1;
             }
-            String skillsArray = (String) card.get("skills");
-            JSONArray skillsJSON = new JSONArray();
-            Object obj1 = parser.parse(skillsArray);
-            skillsJSON = (JSONArray) obj1;
-            Iterator<String> iterator_s = skillsJSON.iterator();
+            JSONArray skillsArray = (JSONArray) card.get("skills");
+            Iterator<String> iterator_s = skillsArray.iterator();
             String[] skills = new String[5];
             n = 0;
             while (iterator_s.hasNext()) {
