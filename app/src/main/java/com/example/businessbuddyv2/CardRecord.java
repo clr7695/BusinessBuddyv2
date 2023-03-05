@@ -220,5 +220,9 @@ public class CardRecord {
         return null;
     }
 
+    public String getString(){
+        return this.cards.toString();
+    }
+
 }
 
