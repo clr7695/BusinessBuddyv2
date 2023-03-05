@@ -122,8 +122,6 @@ public class CameraActivity extends AppCompatActivity {
                 record.scanQR(qrCode);
                 qrCode = "Scanned!";
                 qrCodeFoundButton.setVisibility(View.VISIBLE);
-
-
             }
 
             @Override
