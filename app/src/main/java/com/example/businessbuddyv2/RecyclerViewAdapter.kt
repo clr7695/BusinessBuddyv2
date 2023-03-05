@@ -26,12 +26,12 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
             R.drawable.lwic,
             R.drawable.logo,
             R.drawable.lcarrier,
-            R.drawable.lconstitellation,
+            R.drawable.lconstellation,
             R.drawable.lfidelity,
             R.drawable.lbrite,
             R.drawable.lwaygate,
-            R.drawable.lutron,
-            R.drawable.nyccc
+            R.drawable.llutron
+            //R.drawable.nyccc - what file?
     )
 
 
