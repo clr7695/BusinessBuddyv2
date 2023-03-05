@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     private Button c_btn_scan_a_card;
     private Button c_btn_make_a_card;
 
+    private Button c_btn_share_my_cards;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         c_btn_show_my_cards = findViewById(R.id.btn_show_my_cards);
         c_btn_scan_a_card = findViewById(R.id.btn_scan_a_card);
         c_btn_make_a_card = findViewById(R.id.btn_make_a_card);
+        c_btn_share_my_cards = findViewById(R.id.btn_share_my_cards);
 
         c_btn_make_a_card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, CameraActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        c_btn_share_my_cards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ShareCardActivity.class);
                 startActivity(intent);
             }
         });

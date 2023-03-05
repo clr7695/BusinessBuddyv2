@@ -21,10 +21,10 @@ public class CardRecord {
 
     BusinessCard tempCard;
 
-    public CardRecord(String filepath){
+    public CardRecord(String filepath) {
         File f = new File(filepath);
 
-        if(!(f.exists() && !f.isDirectory())) {
+        if (!(f.exists() && !f.isDirectory())) {
             try {
                 f.createNewFile();
             } catch (IOException e) {
@@ -32,31 +32,31 @@ public class CardRecord {
             }
         }
         this.cardFile = filepath;
-        cards  = new ArrayList<BusinessCard>();
+        cards = new ArrayList<BusinessCard>();
         updateList();
     }
 
-    public void addCard(BusinessCard card){
+    public void addCard(BusinessCard card) {
         cards.add(card);
         updateFile();
     }
 
-    public void updateList(){
+    public void updateList() {
         JSONParser parser = new JSONParser();
         try {
             File f = new File(this.cardFile, "cards.json");
             JSONArray cardList = (JSONArray) parser.parse(new FileReader(f));
-            for(Object o : cardList){
-                JSONObject card = (JSONObject)o;
+            for (Object o : cardList) {
+                JSONObject card = (JSONObject) o;
                 BusinessCard cardDone = readCard(card);
                 cards.add(cardDone);
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void updateFile(){
+    public void updateFile() {
         JSONArray cardArray = new JSONArray();
         try {
             FileWriter cardWriter = new FileWriter(this.cardFile + "/cards.json");
@@ -66,13 +66,13 @@ public class CardRecord {
             }
             cardWriter.write(cardArray.toJSONString());
             cardWriter.close();
-        }catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    private JSONObject makeJSON(BusinessCard card){
+    public JSONObject makeJSON(BusinessCard card) {
         JSONObject cardJSON = new JSONObject();
         try {
             cardJSON.put("firstName", card.firstName);
@@ -94,43 +94,46 @@ public class CardRecord {
 
             JSONObject educationJSON = new JSONObject(card.education);
             cardJSON.put("education", educationJSON);
-        }catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return cardJSON;
     }
 
-    public ArrayList<BusinessCard> getMyCards(){
+    public ArrayList<BusinessCard> getMyCards() {
         ArrayList<BusinessCard> myCards = new ArrayList<BusinessCard>();
-        for(int i = 0; i < cards.size(); i++){
-            if(cards.get(i).myCard){
-                myCards.add(cards.get(i));
+        for (int i = 0; i < cards.size(); i++) {
+            if (cards.get(i) != null) {
+                if(cards.get(i).myCard) {
+                    myCards.add(cards.get(i));
+                }
             }
         }
         return myCards;
     }
 
     public BusinessCard newCardPartial(String firstName, String lastName, String[] pronouns, String email,
-                                      String company, boolean myCard){
+                                       String company, boolean myCard) {
         BusinessCard card = new BusinessCard(firstName, lastName, pronouns, email, company, myCard);
         this.tempCard = card;
+        addCard(card);
         return card;
     }
 
     public BusinessCard newCard(String firstName, String lastName, String[] pronouns, String email,
-                                      String company, HashMap<String, String> education, String[] skills, String bio, boolean myCard){
+                                String company, HashMap<String, String> education, String[] skills, String bio, boolean myCard) {
         BusinessCard card = new BusinessCard(firstName, lastName, pronouns, email, company, education, skills, bio, myCard);
         addCard(card);
         return card;
     }
 
-    public BusinessCard finishCard(HashMap<String, String> education, String[] skills, String bio){
+    public BusinessCard finishCard(HashMap<String, String> education, String[] skills, String bio) {
         BusinessCard card = new BusinessCard(tempCard.firstName, tempCard.lastName, tempCard.pronouns, tempCard.email, tempCard.company, education, skills, bio, tempCard.myCard);
         addCard(card);
         return card;
     }
 
-    private BusinessCard readCard(JSONObject card){
+    private BusinessCard readCard(JSONObject card) {
         BusinessCard cardDone = null;
         try {
             JSONParser parser = new JSONParser();
@@ -175,30 +178,21 @@ public class CardRecord {
             }
             cardDone = new BusinessCard(firstName, lastName, pronouns, email, company,
                     education, skills, bio, myCard);
-        }catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return cardDone;
     }
-    public void scanQR(String cardJSON){
+
+    public void scanQR(String cardJSON) {
         try {
             JSONParser parser = new JSONParser();
             JSONObject card = (JSONObject) parser.parse(cardJSON);
             addCard(readCard(card));
-        }catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    /*public void makeQRcode(BusinessCard card){
-        try {
-            QRcodeGen.make(makeJSON(card).toJSONString(), this.cardFile);
-        } catch (WriterException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (NotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }*/
 }
+
