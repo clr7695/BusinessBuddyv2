@@ -2,6 +2,7 @@ package com.example.businessbuddyv2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.io.File;
 
 public class MakeCardActivity extends AppCompatActivity {
 
@@ -53,6 +56,9 @@ public class MakeCardActivity extends AppCompatActivity {
         c_btn_cancel_make_card = findViewById(R.id.btn_cancel_make_card);
         c_btn_next_make_card = findViewById(R.id.btn_next_make_card);
 
+        Context context = getApplicationContext();
+        File cardFile = context.getDir("cards", context.MODE_PRIVATE);
+
         c_btn_next_make_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,7 +87,7 @@ public class MakeCardActivity extends AppCompatActivity {
                     current_index++;
                 }
 
-                BusinessCard newCard = new BusinessCard(input_first_name, input_last_name, input_pronouns, input_email, input_company, true);
+                BusinessCard newCard = new BusinessCard(input_first_name, input_last_name, input_pronouns, input_email, input_company, true, cardFile);
 
 
             }

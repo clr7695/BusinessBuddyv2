@@ -1,15 +1,31 @@
 package com.example.businessbuddyv2;
+import android.content.Context;
+
 import org.json.simple.*;
 import org.json.simple.parser.*;
+
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class CardRecord {
     ArrayList<BusinessCard> cards;
+    File cardFile;
 
-    public CardRecord(){
+    public CardRecord(File cardFile){
+        File f = new File(cardFile, "cards.json");
+        if(!(f.exists() && !f.isDirectory())) {
+            try {
+                f.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        this.cardFile = f;
         cards  = new ArrayList<BusinessCard>();
         updateList();
     }
@@ -22,7 +38,7 @@ public class CardRecord {
     public void updateList(){
         JSONParser parser = new JSONParser();
         try {
-            JSONArray cardList = (JSONArray) parser.parse(new FileReader("cards.json"));
+            JSONArray cardList = (JSONArray) parser.parse(new FileReader(this.cardFile));
             for(Object o : cardList){
 
                 JSONObject card = (JSONObject)o;
@@ -60,7 +76,7 @@ public class CardRecord {
                     e.printStackTrace();
                 }
                 BusinessCard cardDone = new BusinessCard(firstName, lastName, pronouns, email, company,
-                    education, skills, bio, myCard);
+                    education, skills, bio, myCard, cardFile);
                 cards.add(cardDone);
             }
         } catch(Exception e) {
@@ -69,8 +85,11 @@ public class CardRecord {
     }
 
     public void updateFile(){
+        JSONArray cardArray = new JSONArray();
         try {
+            FileWriter cardWriter = new FileWriter(this.cardFile);
             for (int i = 0; i < cards.size(); i++) {
+
                 org.json.JSONObject cardJSON = new org.json.JSONObject();
                 cardJSON.put("firstName", cards.get(i).firstName);
                 cardJSON.put("lastName", cards.get(i).lastName);
@@ -92,8 +111,11 @@ public class CardRecord {
                 org.json.JSONObject educationJSON = new org.json.JSONObject(cards.get(i).education);
                 cardJSON.put("education", educationJSON);
 
+                cardArray.add(cardJSON);
 
             }
+            cardWriter.write(cardArray.toJSONString());
+            cardWriter.close();
         }catch(Exception e) {
             e.printStackTrace();
         }
