@@ -91,4 +91,20 @@ public class BusinessCard {
     public void isNotMyCard(){
         myCard = false;
     }
+
+    public void setSkills(String skillOne, String skillTwo, String skillThree, String skillFour, String skillFive) {
+        this.skills[0] = skillOne;
+        this.skills[1] = skillTwo;
+        this.skills[2] = skillThree;
+        this.skills[3] = skillFour;
+        this.skills[4] = skillFive;
+    }
+
+    public void setEducation(HashMap<String,String> education) {
+        this.education = education;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
 }

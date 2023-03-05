@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MakeCard">
+    tools:context=".MakeCardActivity">
 
     <TextView
         android:id="@+id/tv_make_card"
@@ -18,7 +18,7 @@
         app:layout_constraintHorizontal_bias="0.469"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.086" />
+        app:layout_constraintVertical_bias="0.048" />
 
     <TextView
         android:id="@+id/tv_first_name"
@@ -229,7 +229,7 @@
         app:layout_constraintHorizontal_bias="0.226"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_company"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btn_next_make_card"
@@ -239,8 +239,8 @@
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintHorizontal_bias="0.462"
         app:layout_constraintStart_toEndOf="@+id/btn_cancel_make_card"
         app:layout_constraintTop_toBottomOf="@+id/tv_company"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
