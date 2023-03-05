@@ -14,7 +14,7 @@ import java.util.Iterator;
 
 public class CardRecord {
     ArrayList<BusinessCard> cards;
-    File cardFile;
+    String cardFile;
 
     public CardRecord(String filepath){
         File f = new File(filepath);
@@ -26,7 +26,7 @@ public class CardRecord {
                 throw new RuntimeException(e + ": " + filepath);
             }
         }
-        this.cardFile = f;
+        this.cardFile = filepath;
         cards  = new ArrayList<BusinessCard>();
         updateList();
     }
@@ -95,7 +95,7 @@ public class CardRecord {
     public void updateFile(){
         JSONArray cardArray = new JSONArray();
         try {
-            FileWriter cardWriter = new FileWriter(this.cardFile);
+            FileWriter cardWriter = new FileWriter(this.cardFile + "/cards.json");
             for (int i = 0; i < cards.size(); i++) {
 
                 org.json.JSONObject cardJSON = new org.json.JSONObject();
@@ -138,5 +138,19 @@ public class CardRecord {
             }
         }
         return myCards;
+    }
+
+    public BusinessCard newCardPartial(String firstName, String lastName, String[] pronouns, String email,
+                                      String company, boolean myCard){
+        BusinessCard card = new BusinessCard(firstName, lastName, pronouns, email, company, myCard);
+        addCard(card);
+        return card;
+    }
+
+    public BusinessCard newCard(String firstName, String lastName, String[] pronouns, String email,
+                                      String company, HashMap<String, String> education, String[] skills, String bio, boolean myCard){
+        BusinessCard card = new BusinessCard(firstName, lastName, pronouns, email, company, education, skills, bio, myCard);
+        addCard(card);
+        return card;
     }
 }

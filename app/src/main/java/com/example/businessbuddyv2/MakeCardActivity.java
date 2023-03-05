@@ -86,8 +86,8 @@ public class MakeCardActivity extends AppCompatActivity {
                     input_pronouns[current_index] = c_et_other_pronoun.getText().toString();
                     current_index++;
                 }
-
-                BusinessCard newCard = new BusinessCard(input_first_name, input_last_name, input_pronouns, input_email, input_company, true, cardFile.getAbsolutePath());
+                CardRecord record = new CardRecord(cardFile.getAbsolutePath());
+                record.newCardPartial(input_first_name, input_last_name, input_pronouns, input_email, input_company, true);
 
 
             }
