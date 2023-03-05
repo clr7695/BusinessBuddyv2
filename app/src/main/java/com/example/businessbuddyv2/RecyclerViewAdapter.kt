@@ -31,7 +31,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
             R.drawable.lbrite,
             R.drawable.lwaygate,
             R.drawable.llutron
-            //R.drawable.nyccc - what file?
+            //R.drawable.nyccc - what file is this..?
     )
 
 

@@ -126,8 +126,14 @@ public class CardRecord {
         return card;
     }
 
-    public BusinessCard finishCard(HashMap<String, String> education, String[] skills, String bio) {
-        BusinessCard card = new BusinessCard(tempCard.firstName, tempCard.lastName, tempCard.pronouns, tempCard.email, tempCard.company, education, skills, bio, tempCard.myCard);
+    public BusinessCard newCardPartial2(String[] skills, String bio) {
+        BusinessCard card = new BusinessCard(tempCard.firstName, tempCard.lastName, tempCard.pronouns, tempCard.email, tempCard.company, null, skills, bio, tempCard.myCard);
+        this.tempCard = card;
+        return card;
+    }
+
+    public BusinessCard finishCard(HashMap<String, String> education) {
+        BusinessCard card = new BusinessCard(tempCard.firstName, tempCard.lastName, tempCard.pronouns, tempCard.email, tempCard.company, education, tempCard.skills, tempCard.bio, tempCard.myCard);
         addCard(card);
         return card;
     }
