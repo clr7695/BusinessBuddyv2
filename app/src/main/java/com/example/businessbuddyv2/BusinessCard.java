@@ -18,6 +18,7 @@ public class BusinessCard {
     String bio;
 
     Boolean myCard;
+    long partial;
 
     public BusinessCard(String firstName, String lastName, String[] pronouns, String email, String company,
                         HashMap<String, String> education, String[] skills, String bio, Boolean myCard){
@@ -30,6 +31,21 @@ public class BusinessCard {
         this.education = education;
         this.bio = bio;
         this.myCard = myCard;
+        this.partial = 0;
+    }
+
+    public BusinessCard(String firstName, String lastName, String[] pronouns, String email, String company,String[] skills, String bio, Boolean myCard) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.company = company;
+        this.pronouns = pronouns;
+        this.skills = new String[5];
+        this.education = new HashMap<String, String>();
+        this.bio = "";
+        this.myCard = myCard;
+        this.partial = 2;
+        this.education = null;
     }
 
     public BusinessCard(String firstName, String lastName, String[] pronouns, String email, String company, boolean myCard) {
@@ -42,8 +58,22 @@ public class BusinessCard {
         this.education = new HashMap<String, String>();
         this.bio = "";
         this.myCard = myCard;
+        this.partial = 1;
     }
 
+    public BusinessCard(String firstName, String lastName, String[] pronouns, String email, String company,
+                        HashMap<String, String> education, String[] skills, String bio, Boolean myCard, long partial){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.company = company;
+        this.pronouns = pronouns;
+        this.skills = skills;
+        this.education = education;
+        this.bio = bio;
+        this.myCard = myCard;
+        this.partial = partial;
+    }
     public String getFirstName(){
         return this.firstName;
     }

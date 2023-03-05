@@ -48,7 +48,7 @@ public class ShareCardActivity extends AppCompatActivity {
         qrCodeIV = findViewById(R.id.idIVQrcode);
         String cardJSON;
         if(myCards.size() > 0){
-            BusinessCard myCard = myCards.get(0);
+            BusinessCard myCard = myCards.get(myCards.size()-1);
             cardJSON = record.makeJSON(myCard).toJSONString();
         }else {
             cardJSON = "hi";

@@ -32,6 +32,7 @@ public class MakeCardActivity extends AppCompatActivity {
     private CheckBox c_cb_other_pronoun;
     private Button c_btn_cancel_make_card;
     private Button c_btn_next_make_card;
+    private CardRecord record;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public class MakeCardActivity extends AppCompatActivity {
         Context context = getApplicationContext();
         File cardFile = context.getDir("cards", context.MODE_PRIVATE);
 
+        this.record = new CardRecord(cardFile.getAbsolutePath());
         c_btn_next_make_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,7 +88,7 @@ public class MakeCardActivity extends AppCompatActivity {
                     input_pronouns[current_index] = c_et_other_pronoun.getText().toString();
                     current_index++;
                 }
-                CardRecord record = new CardRecord(cardFile.getAbsolutePath());
+
                 record.newCardPartial(input_first_name, input_last_name, input_pronouns, input_email, input_company, true);
 
                 Intent intent = new Intent(MakeCardActivity.this, MakeCardActivity2.class);

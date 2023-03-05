@@ -19,7 +19,6 @@ public class CardRecord {
     ArrayList<BusinessCard> cards;
     String cardFile;
 
-    BusinessCard tempCard;
 
     public CardRecord(String filepath) {
         File f = new File(filepath);
@@ -44,7 +43,7 @@ public class CardRecord {
     public void updateList() {
         JSONParser parser = new JSONParser();
         try {
-            File f = new File(this.cardFile, "cards.json");
+            File f = new File(this.cardFile, "cards0.json");
             JSONArray cardList = (JSONArray) parser.parse(new FileReader(f));
             for (Object o : cardList) {
                 JSONObject card = (JSONObject) o;
@@ -59,7 +58,7 @@ public class CardRecord {
     public void updateFile() {
         JSONArray cardArray = new JSONArray();
         try {
-            FileWriter cardWriter = new FileWriter(this.cardFile + "/cards.json");
+            FileWriter cardWriter = new FileWriter(this.cardFile + "/cards0.json");
             for (int i = 0; i < cards.size(); i++) {
                 JSONObject cardJSON = makeJSON(cards.get(i));
                 cardArray.add(cardJSON);
@@ -81,6 +80,7 @@ public class CardRecord {
             cardJSON.put("company", card.company);
             cardJSON.put("bio", card.bio);
             cardJSON.put("myCard", card.myCard);
+            cardJSON.put("partial", card.partial);
             JSONArray pronouns = new JSONArray();
             for (int j = 0; j < card.pronouns.length; j++) {
                 pronouns.add(card.pronouns[j]);
@@ -115,7 +115,7 @@ public class CardRecord {
     public BusinessCard newCardPartial(String firstName, String lastName, String[] pronouns, String email,
                                        String company, boolean myCard) {
         BusinessCard card = new BusinessCard(firstName, lastName, pronouns, email, company, myCard);
-        this.tempCard = card;
+        addCard(card);
         return card;
     }
 
@@ -127,12 +127,14 @@ public class CardRecord {
     }
 
     public BusinessCard newCardPartial2(String[] skills, String bio) {
-        BusinessCard card = new BusinessCard(tempCard.firstName, tempCard.lastName, tempCard.pronouns, tempCard.email, tempCard.company, null, skills, bio, tempCard.myCard);
-        this.tempCard = card;
+        BusinessCard tempCard = getPartial1();
+        BusinessCard card = new BusinessCard(tempCard.firstName, tempCard.lastName, tempCard.pronouns, tempCard.email, tempCard.company, skills, bio, tempCard.myCard);
+        addCard(card);
         return card;
     }
 
     public BusinessCard finishCard(HashMap<String, String> education) {
+        BusinessCard tempCard = getPartial2();
         BusinessCard card = new BusinessCard(tempCard.firstName, tempCard.lastName, tempCard.pronouns, tempCard.email, tempCard.company, education, tempCard.skills, tempCard.bio, tempCard.myCard);
         addCard(card);
         return card;
@@ -142,6 +144,7 @@ public class CardRecord {
         BusinessCard cardDone = null;
         try {
             JSONParser parser = new JSONParser();
+            long partial = (long) card.get("partial");
             String firstName = (String) card.get("firstName");
             String lastName = (String) card.get("lastName");
             String email = (String) card.get("email");
@@ -176,7 +179,7 @@ public class CardRecord {
                 e.printStackTrace();
             }
             cardDone = new BusinessCard(firstName, lastName, pronouns, email, company,
-                    education, skills, bio, myCard);
+                    education, skills, bio, myCard, partial);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -191,6 +194,30 @@ public class CardRecord {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public BusinessCard getPartial1(){
+        updateList();
+        for(int i = 0; i < cards.size(); i++){
+            if(cards.get(i).partial == 1){
+                BusinessCard card = cards.get(i);
+                cards.remove(i);
+                return card;
+            }
+        }
+        return null;
+    }
+
+    public BusinessCard getPartial2(){
+        updateList();
+        for(int i = 0; i < cards.size(); i++){
+            if(cards.get(i).partial == 2){
+                BusinessCard card = cards.get(i);
+                cards.remove(i);
+                return card;
+            }
+        }
+        return null;
     }
 
 }
