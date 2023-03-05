@@ -36,8 +36,10 @@ public class CardRecord {
     }
 
     public void addCard(BusinessCard card) {
-        cards.add(card);
-        updateFile();
+        if(!cards.contains(card)){
+            cards.add(card);
+            updateFile();
+        }
     }
 
     public void updateList() {
