@@ -87,7 +87,7 @@ public class MakeCardActivity extends AppCompatActivity {
                     current_index++;
                 }
 
-                BusinessCard newCard = new BusinessCard(input_first_name, input_last_name, input_pronouns, input_email, input_company, true, cardFile);
+                BusinessCard newCard = new BusinessCard(input_first_name, input_last_name, input_pronouns, input_email, input_company, true, cardFile.getAbsolutePath());
 
 
             }

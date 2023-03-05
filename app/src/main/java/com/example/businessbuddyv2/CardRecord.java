@@ -16,13 +16,14 @@ public class CardRecord {
     ArrayList<BusinessCard> cards;
     File cardFile;
 
-    public CardRecord(File cardFile){
-        File f = new File(cardFile, "cards.json");
+    public CardRecord(String filepath){
+        File f = new File(filepath);
+
         if(!(f.exists() && !f.isDirectory())) {
             try {
                 f.createNewFile();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException(e + ": " + filepath);
             }
         }
         this.cardFile = f;
@@ -38,7 +39,8 @@ public class CardRecord {
     public void updateList(){
         JSONParser parser = new JSONParser();
         try {
-            JSONArray cardList = (JSONArray) parser.parse(new FileReader(this.cardFile));
+            File f = new File(this.cardFile, "cards.json");
+            JSONArray cardList = (JSONArray) parser.parse(new FileReader(f));
             for(Object o : cardList){
 
                 JSONObject card = (JSONObject)o;
@@ -48,7 +50,10 @@ public class CardRecord {
                 String company = (String) card.get("company");
                 String bio = (String) card.get("bio");
                 Boolean myCard = (Boolean) card.get("myCard");
-                JSONArray pronounsJSON = (JSONArray) card.get("pronouns");
+                String pronounsArray = (String) card.get("pronouns");
+                JSONArray pronounsJSON = new JSONArray();
+                Object obj = parser.parse(pronounsArray);
+                pronounsJSON = (JSONArray) obj;
                 Iterator<String> iterator_p = pronounsJSON.iterator();
                 String[] pronouns = new String[4];
                 int n = 0;
@@ -56,7 +61,10 @@ public class CardRecord {
                     pronouns[n] = iterator_p.next();
                     n += 1;
                 }
-                JSONArray skillsJSON = (JSONArray) card.get("skills");
+                String skillsArray = (String) card.get("skills");
+                JSONArray skillsJSON = new JSONArray();
+                Object obj1 = parser.parse(skillsArray);
+                skillsJSON = (JSONArray) obj1;
                 Iterator<String> iterator_s = skillsJSON.iterator();
                 String[] skills = new String[5];
                 n = 0;
@@ -76,7 +84,7 @@ public class CardRecord {
                     e.printStackTrace();
                 }
                 BusinessCard cardDone = new BusinessCard(firstName, lastName, pronouns, email, company,
-                    education, skills, bio, myCard, cardFile);
+                    education, skills, bio, myCard);
                 cards.add(cardDone);
             }
         } catch(Exception e) {

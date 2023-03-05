@@ -22,7 +22,7 @@ public class BusinessCard {
     CardRecord cardRecord;
 
     public BusinessCard(String firstName, String lastName, String[] pronouns, String email, String company,
-                        HashMap<String, String> education, String[] skills, String bio, Boolean myCard, File cardFile){
+                        HashMap<String, String> education, String[] skills, String bio, Boolean myCard, String filepath){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -33,11 +33,11 @@ public class BusinessCard {
         this.bio = bio;
         this.myCard = myCard;
 
-        this.cardRecord = new CardRecord(cardFile);
+        this.cardRecord = new CardRecord(filepath);
         this.cardRecord.addCard(this);
     }
 
-    public BusinessCard(String firstName, String lastName, String[] pronouns, String email, String company, boolean myCard, File cardFile) {
+    public BusinessCard(String firstName, String lastName, String[] pronouns, String email, String company, boolean myCard, String filepath) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -48,7 +48,7 @@ public class BusinessCard {
         this.bio = "";
         this.myCard = myCard;
 
-        this.cardRecord = new CardRecord(cardFile);
+        this.cardRecord = new CardRecord(filepath);
         this.cardRecord.addCard(this);
     }
 
