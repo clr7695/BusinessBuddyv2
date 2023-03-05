@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MakeCardActivity3">
+
+    <CheckBox
+        android:id="@+id/cb_masters"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Master's Degree"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cb_bachelors"
+        app:layout_constraintVertical_bias="0.035" />
+
+    <CheckBox
+        android:id="@+id/cb_doctorate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Doctorate"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cb_masters"
+        app:layout_constraintVertical_bias="0.044" />
+
+    <CheckBox
+        android:id="@+id/cb_bachelors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bachelor's Degree"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cb_associates"
+        app:layout_constraintVertical_bias="0.026" />
+
+    <EditText
+        android:id="@+id/et_associates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toEndOf="@+id/cb_associates"
+        app:layout_constraintTop_toBottomOf="@+id/et_high_school"
+        app:layout_constraintVertical_bias="0.032" />
+
+    <EditText
+        android:id="@+id/et_masters"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.243"
+        app:layout_constraintStart_toEndOf="@+id/cb_masters"
+        app:layout_constraintTop_toBottomOf="@+id/et_bachelors"
+        app:layout_constraintVertical_bias="0.045" />
+
+    <EditText
+        android:id="@+id/et_doctorate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.175"
+        app:layout_constraintStart_toEndOf="@+id/cb_doctorate"
+        app:layout_constraintTop_toBottomOf="@+id/et_bachelors"
+        app:layout_constraintVertical_bias="0.247" />
+
+    <EditText
+        android:id="@+id/et_bachelors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toEndOf="@+id/cb_bachelors"
+        app:layout_constraintTop_toBottomOf="@+id/et_associates"
+        app:layout_constraintVertical_bias="0.034" />
+
+    <EditText
+        android:id="@+id/et_high_school"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.196"
+        app:layout_constraintStart_toEndOf="@+id/cb_high_school"
+        app:layout_constraintTop_toBottomOf="@+id/tv_education_two"
+        app:layout_constraintVertical_bias="0.044" />
+
+    <TextView
+        android:id="@+id/tv_education_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="Please include where you recieved your degree."
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_education"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_education"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="476dp"
+        android:fontFamily="sans-serif"
+        android:text="Education:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.165"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_make_card_three"
+        app:layout_constraintVertical_bias="0.555" />
+
+    <CheckBox
+        android:id="@+id/cb_high_school"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="High School"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_education_two"
+        app:layout_constraintVertical_bias="0.038" />
+
+    <CheckBox
+        android:id="@+id/cb_associates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Associate's Degree"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cb_high_school"
+        app:layout_constraintVertical_bias="0.025" />
+
+    <TextView
+        android:id="@+id/tv_make_card_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="Make Your Card"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.083" />
+
+    <Button
+        android:id="@+id/btn_cancel_make_card_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.21"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cb_doctorate"
+        app:layout_constraintVertical_bias="0.267" />
+
+    <Button
+        android:id="@+id/btn_finish_make_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Finish"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintStart_toEndOf="@+id/btn_cancel_make_card_three"
+        app:layout_constraintTop_toBottomOf="@+id/et_doctorate"
+        app:layout_constraintVertical_bias="0.267" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -61,6 +61,8 @@ public class MakeCardActivity2 extends AppCompatActivity {
                 CardRecord record = new CardRecord(cardFile.getAbsolutePath());
                 record.newCardPartial2(skills, input_bio);
 
+                Intent intent = new Intent(MakeCardActivity2.this, MakeCardActivity3.class);
+                startActivity(intent);
             }
         });
 
