@@ -89,6 +89,8 @@ public class MakeCardActivity extends AppCompatActivity {
                 CardRecord record = new CardRecord(cardFile.getAbsolutePath());
                 record.newCardPartial(input_first_name, input_last_name, input_pronouns, input_email, input_company, true);
 
+                Intent intent = new Intent(MakeCardActivity.this, MakeCardActivity2.class);
+                startActivity(intent);
 
             }
         });
